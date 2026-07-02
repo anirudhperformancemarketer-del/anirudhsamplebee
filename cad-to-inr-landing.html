@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CAD to INR — Convert Canadian Dollars to Indian Rupees | RemitBee</title>
+<meta name="description" content="Convert CAD to INR at live mid-market rates. Low fees, fast transfers, no hidden mark-ups. Track daily highs, lows and 30-day trends.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --pine:#0E3B36;
+  --pine-deep:#092A26;
+  --mint:#E9F4EF;
+  --mint-soft:#F3F9F6;
+  --saffron:#F2A93B;
+  --saffron-deep:#D98A14;
+  --ink:#14231F;
+  --muted:#5B6E67;
+  --paper:#FBFAF6;
+  --line:#D8E4DD;
+  --white:#FFFFFF;
+  --radius:18px;
+  --shadow:0 18px 44px rgba(9,42,38,.10);
+  --font-display:"Bricolage Grotesque",system-ui,sans-serif;
+  --font-body:"Inter",system-ui,sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:var(--font-body);color:var(--ink);background:var(--paper);line-height:1.6;font-size:16px}
+img{max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer}
+:focus-visible{outline:3px solid var(--saffron);outline-offset:2px;border-radius:6px}
+.wrap{max-width:1160px;margin:0 auto;padding:0 24px}
+h1,h2,h3{font-family:var(--font-display);line-height:1.12;letter-spacing:-.01em}
+h2{font-size:clamp(28px,4vw,40px);font-weight:700}
+.eyebrow{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--saffron-deep);margin-bottom:14px}
+.section{padding:88px 0}
+.section-head{max-width:640px;margin-bottom:48px}
+.section-head p{color:var(--muted);margin-top:12px}
+.btn{display:inline-flex;align-items:center;gap:8px;border:0;border-radius:999px;padding:14px 28px;font-size:15px;font-weight:600;transition:transform .15s ease,box-shadow .15s ease}
+.btn:hover{transform:translateY(-1px)}
+.btn-primary{background:var(--saffron);color:var(--pine-deep);box-shadow:0 8px 20px rgba(242,169,59,.35)}
+.btn-primary:hover{background:#F6B554}
+.btn-ghost{background:transparent;color:var(--pine);border:1.5px solid var(--line)}
+.btn-dark{background:var(--pine);color:#fff}
+.btn-dark:hover{background:var(--pine-deep)}
+
+/* ---------- NAV ---------- */
+.nav{position:sticky;top:0;z-index:50;background:rgba(251,250,246,.9);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:72px}
+.logo{display:flex;align-items:center;gap:10px;font-family:var(--font-display);font-weight:800;font-size:20px;color:var(--pine)}
+.logo-mark{width:36px;height:36px;border-radius:11px;background:var(--pine);display:grid;place-items:center}
+.logo-mark svg{width:22px;height:22px;display:block}
+.nav-links{display:flex;gap:28px;font-size:14.5px;font-weight:500;color:var(--muted)}
+.nav-links a:hover{color:var(--pine)}
+.nav-cta{display:flex;gap:10px;align-items:center}
+.nav-cta .login{font-size:14.5px;font-weight:600;color:var(--pine);padding:10px 14px}
+.nav-cta .btn{padding:11px 22px;font-size:14px}
+
+/* ---------- HERO ---------- */
+.hero{background:linear-gradient(180deg,var(--mint-soft) 0%,var(--paper) 100%);padding:72px 0 88px;position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;right:-160px;top:-160px;width:480px;height:480px;border-radius:50%;background:radial-gradient(circle,rgba(242,169,59,.16),transparent 65%)}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:64px;align-items:center;position:relative}
+.corridor{display:inline-flex;align-items:center;gap:10px;background:var(--white);border:1px solid var(--line);border-radius:999px;padding:8px 16px;font-size:13px;font-weight:600;color:var(--pine);margin-bottom:22px}
+.corridor .flag{font-size:16px}
+.corridor .arrow{color:var(--saffron-deep)}
+.hero h1{font-size:clamp(34px,5vw,54px);font-weight:800;color:var(--pine-deep)}
+.hero h1 em{font-style:normal;color:var(--saffron-deep);position:relative;white-space:nowrap}
+.hero h1 em::after{content:"";position:absolute;left:0;right:0;bottom:4px;height:10px;background:rgba(242,169,59,.28);z-index:-1;border-radius:4px}
+.hero p.lead{margin-top:18px;font-size:17.5px;color:var(--muted);max-width:480px}
+.hero-trust{display:flex;gap:28px;margin-top:34px;flex-wrap:wrap}
+.trust-item{display:flex;align-items:center;gap:9px;font-size:13.5px;font-weight:600;color:var(--pine)}
+.trust-item .dot{width:26px;height:26px;border-radius:8px;background:var(--mint);display:grid;place-items:center;font-size:13px}
+
+/* converter card */
+.converter{background:var(--white);border:1px solid var(--line);border-radius:24px;box-shadow:var(--shadow);padding:28px;position:relative}
+.converter .rate-pill{position:absolute;top:-16px;left:28px;background:var(--pine);color:#fff;font-size:12.5px;font-weight:600;border-radius:999px;padding:7px 16px;display:flex;gap:8px;align-items:center}
+.rate-pill .pulse{width:8px;height:8px;border-radius:50%;background:#4ADE80;animation:pulse 1.6s infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(74,222,128,.5)}50%{box-shadow:0 0 0 6px rgba(74,222,128,0)}}
+.field{margin-top:20px}
+.field label{display:block;font-size:12.5px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.field-box{display:flex;align-items:center;border:1.5px solid var(--line);border-radius:14px;overflow:hidden;transition:border-color .15s}
+.field-box:focus-within{border-color:var(--pine)}
+.field-box input{flex:1;border:0;padding:16px 18px;font-size:24px;font-weight:700;font-family:var(--font-display);color:var(--pine-deep);min-width:0;background:transparent}
+.field-box input:focus{outline:none}
+.cur{display:flex;align-items:center;gap:8px;padding:0 18px;border-left:1.5px solid var(--line);background:var(--mint-soft);align-self:stretch;font-weight:700;font-size:15px;color:var(--pine)}
+.cur .f{font-size:20px}
+.swap-row{display:flex;align-items:center;gap:14px;margin:18px 0 0}
+.swap-row .line{flex:1;height:1px;background:var(--line)}
+.swap-btn{width:42px;height:42px;border-radius:50%;border:1.5px solid var(--line);background:var(--white);display:grid;place-items:center;font-size:17px;color:var(--pine);transition:transform .2s,background .2s}
+.swap-btn:hover{background:var(--mint);transform:rotate(180deg)}
+.fee-lines{margin-top:20px;border-top:1px dashed var(--line);padding-top:16px;font-size:13.5px;color:var(--muted)}
+.fee-lines div{display:flex;justify-content:space-between;padding:4px 0}
+.fee-lines strong{color:var(--pine-deep)}
+.fee-free{color:#16A34A;font-weight:700}
+.converter .btn-primary{width:100%;justify-content:center;margin-top:20px;padding:16px}
+.converter .note{text-align:center;font-size:12px;color:var(--muted);margin-top:12px}
+
+/* ---------- STATS ---------- */
+.stats{background:var(--pine);color:#fff;border-radius:28px;padding:52px;margin-top:-46px;position:relative;z-index:2}
+.stats .eyebrow{color:var(--saffron)}
+.stats h2{color:#fff}
+.stats-grid{display:grid;grid-template-columns:300px 1fr;gap:48px;align-items:center;margin-top:8px}
+.stat-list{display:grid;gap:18px;margin-top:24px}
+.stat{border-left:3px solid var(--saffron);padding-left:16px}
+.stat .v{font-family:var(--font-display);font-size:28px;font-weight:700}
+.stat .l{font-size:13px;color:#BBD4CC;letter-spacing:.03em}
+.chart-card{background:var(--pine-deep);border-radius:18px;padding:24px}
+.chart-card .ch-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px;font-size:13px;color:#BBD4CC}
+.chart-card .ch-head b{color:#fff;font-size:15px}
+.chart-card svg{width:100%;height:auto;display:block}
+
+/* ---------- FEATURES ---------- */
+.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.card{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);padding:28px 24px;transition:transform .18s,box-shadow .18s}
+.card:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+.card .icon{width:48px;height:48px;border-radius:14px;background:var(--mint);display:grid;place-items:center;font-size:21px;margin-bottom:18px}
+.card h3{font-size:17.5px;font-weight:700;margin-bottom:8px;color:var(--pine-deep)}
+.card p{font-size:14px;color:var(--muted)}
+.section-cta{margin-top:44px}
+
+/* ---------- STEPS ---------- */
+.steps-section{background:var(--mint-soft)}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;counter-reset:step}
+.step{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);padding:32px 26px;position:relative}
+.step::before{counter-increment:step;content:counter(step,decimal-leading-zero);font-family:var(--font-display);font-weight:800;font-size:15px;color:var(--saffron-deep);background:rgba(242,169,59,.14);border-radius:999px;padding:6px 14px;display:inline-block;margin-bottom:18px}
+.step h3{font-size:18px;margin-bottom:8px;color:var(--pine-deep)}
+.step p{font-size:14px;color:var(--muted)}
+
+/* ---------- TABLES ---------- */
+.tables{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.table-card{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+.table-card header{background:var(--pine);color:#fff;padding:16px 22px;font-family:var(--font-display);font-weight:700;font-size:15.5px;display:flex;justify-content:space-between;align-items:center}
+.table-card header span{font-size:12px;font-weight:500;color:#BBD4CC}
+table{width:100%;border-collapse:collapse;font-size:14px}
+td{padding:11px 22px;border-top:1px solid var(--line)}
+tr:nth-child(even) td{background:var(--mint-soft)}
+td:last-child{text-align:right;font-weight:600;color:var(--pine-deep)}
+
+/* ---------- FAQ ---------- */
+.faq{max-width:760px;margin:0 auto}
+.faq-item{border:1px solid var(--line);border-radius:14px;background:var(--white);margin-bottom:12px;overflow:hidden}
+.faq-q{width:100%;display:flex;justify-content:space-between;align-items:center;gap:16px;background:none;border:0;text-align:left;padding:20px 22px;font-size:15.5px;font-weight:600;color:var(--pine-deep)}
+.faq-q .chev{transition:transform .2s;color:var(--saffron-deep);font-size:13px}
+.faq-item.open .chev{transform:rotate(180deg)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .28s ease}
+.faq-a p{padding:0 22px 20px;font-size:14.5px;color:var(--muted)}
+
+/* ---------- CTA BAND ---------- */
+.cta-band{background:linear-gradient(120deg,var(--pine) 0%,var(--pine-deep) 100%);border-radius:28px;padding:64px 56px;display:flex;justify-content:space-between;align-items:center;gap:40px;flex-wrap:wrap;position:relative;overflow:hidden}
+.cta-band::after{content:"₹";position:absolute;right:36px;bottom:-56px;font-family:var(--font-display);font-size:220px;font-weight:800;color:rgba(242,169,59,.12);line-height:1}
+.cta-band h2{color:#fff;max-width:520px}
+.cta-band p{color:#BBD4CC;margin-top:10px;max-width:480px}
+
+/* ---------- FOOTER ---------- */
+footer{background:var(--pine-deep);color:#9FBDB4;margin-top:96px;padding:64px 0 32px;font-size:13.5px}
+.foot-grid{display:grid;grid-template-columns:1.4fr repeat(4,1fr);gap:36px;padding-bottom:44px;border-bottom:1px solid rgba(255,255,255,.1)}
+.foot-grid h4{color:#fff;font-size:13px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:16px;font-family:var(--font-body)}
+.foot-grid ul{list-style:none;display:grid;gap:10px}
+.foot-grid a:hover{color:#fff}
+.foot-brand .logo{color:#fff;margin-bottom:14px}
+.foot-brand p{max-width:260px}
+.foot-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:28px;flex-wrap:wrap;gap:16px}
+.socials{display:flex;gap:10px}
+.socials a{width:34px;height:34px;border-radius:9px;background:rgba(255,255,255,.08);display:grid;place-items:center;font-size:14px;transition:background .15s}
+.socials a:hover{background:rgba(242,169,59,.3);color:#fff}
+
+/* ---------- PAGES / FLOWS ---------- */
+.page{display:none}
+.page.active{display:block;animation:fadeIn .25s ease}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.flow{min-height:calc(100vh - 72px);background:var(--mint-soft);padding:64px 0 96px}
+.flow-card{max-width:520px;margin:0 auto;background:var(--white);border:1px solid var(--line);border-radius:24px;box-shadow:var(--shadow);padding:36px}
+.flow-card.wide{max-width:620px}
+.flow-card h2{font-size:26px;margin-bottom:6px;color:var(--pine-deep)}
+.flow-card .sub{font-size:14px;color:var(--muted);margin-bottom:24px}
+.f-field{margin-bottom:16px}
+.f-field label{display:block;font-size:13px;font-weight:600;color:var(--pine-deep);margin-bottom:6px}
+.f-field input,.f-field select{width:100%;border:1.5px solid var(--line);border-radius:12px;padding:13px 15px;font-size:15px;font-family:var(--font-body);background:var(--white);color:var(--ink);transition:border-color .15s}
+.f-field input:focus,.f-field select:focus{outline:none;border-color:var(--pine)}
+.f-error{display:none;font-size:12.5px;color:#DC2626;margin-top:5px}
+.f-field.invalid input,.f-field.invalid select{border-color:#DC2626}
+.f-field.invalid .f-error{display:block}
+.flow-card .btn{width:100%;justify-content:center;margin-top:8px;padding:15px}
+.flow-foot{text-align:center;font-size:13.5px;color:var(--muted);margin-top:18px}
+.linklike{color:var(--saffron-deep);font-weight:600;cursor:pointer;background:none;border:0;font-size:inherit;padding:0}
+.back-link{display:inline-flex;align-items:center;gap:6px;font-size:13.5px;font-weight:600;color:var(--pine);margin-bottom:22px;cursor:pointer;background:none;border:0}
+.back-link:hover{color:var(--saffron-deep)}
+.banner-ok{background:var(--mint);border-radius:12px;padding:12px 16px;font-size:14px;font-weight:600;color:var(--pine-deep);margin-bottom:18px;display:none}
+.wizard-steps{display:flex;gap:8px;margin-bottom:26px}
+.wizard-steps span{flex:1;height:5px;border-radius:99px;background:var(--line);transition:background .2s}
+.wizard-steps span.on{background:var(--saffron)}
+.wstep{display:none}
+.wstep.active{display:block}
+.summary{border:1px dashed var(--line);border-radius:14px;padding:18px;margin:6px 0 14px;font-size:14px}
+.summary div{display:flex;justify-content:space-between;padding:5px 0;color:var(--muted)}
+.summary strong{color:var(--pine-deep);text-align:right}
+.summary .total{border-top:1px solid var(--line);margin-top:8px;padding-top:10px;font-size:15px}
+.success-icon{width:76px;height:76px;border-radius:50%;background:var(--mint);display:grid;place-items:center;font-size:34px;margin:0 auto 20px}
+.center{text-align:center}
+.ref{display:inline-block;background:var(--mint-soft);border:1px dashed var(--line);border-radius:10px;padding:8px 16px;font-weight:700;color:var(--pine-deep);margin:10px 0 4px;font-family:var(--font-display)}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width:960px){
+  .hero-grid{grid-template-columns:1fr;gap:44px}
+  .cards{grid-template-columns:repeat(2,1fr)}
+  .stats-grid{grid-template-columns:1fr}
+  .steps{grid-template-columns:1fr}
+  .tables{grid-template-columns:1fr}
+  .foot-grid{grid-template-columns:repeat(2,1fr)}
+  .nav-links{display:none}
+  .stats{padding:36px 26px}
+}
+@media (max-width:560px){
+  .cards{grid-template-columns:1fr}
+  .cta-band{padding:44px 28px}
+  .section{padding:64px 0}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<nav class="nav">
+  <div class="wrap nav-inner">
+    <a class="logo" href="#"><span class="logo-mark"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><ellipse cx="6.4" cy="6.4" rx="4.8" ry="2.7" fill="#CFE9DD" transform="rotate(-28 6.4 6.4)"/><ellipse cx="17.6" cy="6.4" rx="4.8" ry="2.7" fill="#CFE9DD" transform="rotate(28 17.6 6.4)"/><clipPath id="beeBodyNav"><ellipse cx="12" cy="14" rx="5.3" ry="7"/></clipPath><ellipse cx="12" cy="14" rx="5.3" ry="7" fill="#F2A93B"/><g clip-path="url(#beeBodyNav)"><rect x="5" y="11.6" width="14" height="2.3" fill="#0E3B36"/><rect x="5" y="16.2" width="14" height="2.3" fill="#0E3B36"/></g><circle cx="12" cy="6.4" r="2.5" fill="#F2A93B"/><path d="M12 20.6 L10.7 23 L13.3 23 Z" fill="#F2A93B"/></svg></span>Remit<span style="color:var(--saffron-deep)">Bee</span></a>
+    <div class="nav-links">
+      <a href="#features">Features</a>
+      <a href="#how">How it works</a>
+      <a href="#rates">Rates</a>
+      <a href="#faq">FAQ</a>
+    </div>
+    <div class="nav-cta">
+      <a class="login" href="#" onclick="go('login');return false">Log in</a>
+      <a class="btn btn-primary" href="#" onclick="go('signup');return false">Sign up free</a>
+    </div>
+  </div>
+</nav>
+
+<div id="page-home" class="page active">
+
+<!-- ============ HERO ============ -->
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="corridor"><span class="flag">🇨🇦</span> CAD <span class="arrow">→</span> <span class="flag">🇮🇳</span> INR</span>
+      <h1>Convert Canadian Dollars to Indian Rupees at the <em>Real Exchange Rate</em></h1>
+      <p class="lead">Get live CAD to INR exchange rates with zero hidden mark-ups. Your first transfer is free — and every transfer over $500 CAD stays free.</p>
+      <div class="hero-trust">
+        <span class="trust-item"><span class="dot">🔒</span> Bank-level security</span>
+        <span class="trust-item"><span class="dot">⚡</span> Delivery in minutes</span>
+        <span class="trust-item"><span class="dot">⭐</span> 4.8 rated by 60k+ users</span>
+      </div>
+    </div>
+
+    <div class="converter" aria-label="Currency converter">
+      <div class="rate-pill"><span class="pulse"></span> Live rate · 1 CAD = <span id="rateLabel">61.42</span> INR</div>
+
+      <div class="field">
+        <label for="sendAmt">You send</label>
+        <div class="field-box">
+          <input id="sendAmt" type="text" inputmode="decimal" value="1,000" aria-label="Amount in Canadian Dollars">
+          <span class="cur"><span class="f">🇨🇦</span> CAD</span>
+        </div>
+      </div>
+
+      <div class="swap-row">
+        <span class="line"></span>
+        <button class="swap-btn" id="swapBtn" title="Swap currencies" aria-label="Swap currencies">⇅</button>
+        <span class="line"></span>
+      </div>
+
+      <div class="field">
+        <label for="recvAmt">They receive</label>
+        <div class="field-box">
+          <input id="recvAmt" type="text" inputmode="decimal" value="61,420" aria-label="Amount in Indian Rupees">
+          <span class="cur"><span class="f">🇮🇳</span> INR</span>
+        </div>
+      </div>
+
+      <div class="fee-lines">
+        <div><span>Transfer fee</span><strong class="fee-free" id="feeLine">FREE (over $500 CAD)</strong></div>
+        <div><span>Exchange rate</span><strong id="rateLine">1 CAD = 61.42 INR</strong></div>
+        <div><span>Estimated delivery</span><strong>Within minutes</strong></div>
+      </div>
+
+      <button class="btn btn-primary" onclick="go('send')">Send money now →</button>
+      <p class="note">Illustrative demo rate. Sign up to lock in today’s live rate.</p>
+    </div>
+  </div>
+</header>
+
+<!-- ============ STATS ============ -->
+<section class="wrap" id="rates">
+  <div class="stats">
+    <span class="eyebrow">Exchange rate stats</span>
+    <h2>CAD to INR — tracked daily</h2>
+    <div class="stats-grid">
+      <div class="stat-list">
+        <div class="stat"><div class="v" id="statNow">₹61.42</div><div class="l">Rate right now</div></div>
+        <div class="stat"><div class="v">₹62.08</div><div class="l">30-day high</div></div>
+        <div class="stat"><div class="v">₹60.35</div><div class="l">30-day low</div></div>
+        <div class="stat"><div class="v">+1.2%</div><div class="l">Change this month</div></div>
+      </div>
+      <div class="chart-card">
+        <div class="ch-head"><b>Last 30 days</b><span>1 CAD in INR</span></div>
+        <svg id="chart" viewBox="0 0 640 220" role="img" aria-label="Line chart of the CAD to INR rate over the last 30 days"></svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FEATURES ============ -->
+<section class="section wrap" id="features">
+  <div class="section-head">
+    <span class="eyebrow">Why RemitBee</span>
+    <h2>Built for converting CAD to INR</h2>
+    <p>Everything you need to move money from Canada to India — quickly, transparently, and at a rate you can trust.</p>
+  </div>
+  <div class="cards">
+    <div class="card"><div class="icon">📈</div><h3>Real-time exchange rates</h3><p>Always the up-to-the-minute CAD to INR rate, with no hidden mark-ups baked in.</p></div>
+    <div class="card"><div class="icon">🪙</div><h3>Lower transfer fees</h3><p>Low flat fees on small amounts — and free transfers on anything over $500 CAD.</p></div>
+    <div class="card"><div class="icon">🚀</div><h3>Fast &amp; secure delivery</h3><p>Most transfers land in Indian bank accounts within minutes, protected end to end.</p></div>
+    <div class="card"><div class="icon">🧮</div><h3>Net amount calculator</h3><p>See exactly what your recipient gets in INR before you press send. No surprises.</p></div>
+  </div>
+  <div class="section-cta"><a class="btn btn-dark" href="#" onclick="go('send');return false">Start sending today</a></div>
+</section>
+
+<!-- ============ HOW IT WORKS ============ -->
+<section class="section steps-section" id="how">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">How it works</span>
+      <h2>Convert CAD to INR in three steps</h2>
+    </div>
+    <div class="steps">
+      <div class="step"><h3>Enter your amount</h3><p>Type how much CAD you want to send. The converter instantly shows the INR your recipient receives.</p></div>
+      <div class="step"><h3>Pick a payment method</h3><p>Pay by Interac e-Transfer, bank transfer, or debit — whichever works best for you.</p></div>
+      <div class="step"><h3>That’s it — money sent</h3><p>Track your transfer live until it lands in the recipient’s Indian bank account.</p></div>
+    </div>
+    <div class="section-cta"><a class="btn btn-primary" href="#" onclick="go('signup');return false">Sign up for free</a></div>
+  </div>
+</section>
+
+<!-- ============ BENEFITS ============ -->
+<section class="section wrap">
+  <div class="section-head">
+    <span class="eyebrow">More reasons to switch</span>
+    <h2>Benefits that add up</h2>
+  </div>
+  <div class="cards">
+    <div class="card"><div class="icon">💬</div><h3>24/7 human support</h3><p>Real people, around the clock — by chat, phone, or email whenever you need help.</p></div>
+    <div class="card"><div class="icon">📊</div><h3>Historical trends</h3><p>Review past CAD to INR movements to pick the smartest moment to transfer.</p></div>
+    <div class="card"><div class="icon">🔔</div><h3>Rate alerts</h3><p>Set a target rate and we’ll notify you the moment CAD to INR hits it.</p></div>
+    <div class="card"><div class="icon">👁️</div><h3>No hidden fees</h3><p>The rate you see is the rate you get. Every fee is shown up front, before you send.</p></div>
+  </div>
+</section>
+
+<!-- ============ CONVERSION TABLES ============ -->
+<section class="section wrap" id="tables">
+  <div class="section-head">
+    <span class="eyebrow">Quick reference</span>
+    <h2>CAD ⇄ INR conversion table</h2>
+    <p>Common amounts converted at today’s demo rate of 1 CAD = <span class="rate-inline">61.42</span> INR.</p>
+  </div>
+  <div class="tables">
+    <div class="table-card">
+      <header>CAD → INR <span>Canadian Dollar to Indian Rupee</span></header>
+      <table id="tblCadInr"><tbody></tbody></table>
+    </div>
+    <div class="table-card">
+      <header>INR → CAD <span>Indian Rupee to Canadian Dollar</span></header>
+      <table id="tblInrCad"><tbody></tbody></table>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section class="section wrap" id="faq">
+  <div class="section-head" style="text-align:center;margin-left:auto;margin-right:auto">
+    <span class="eyebrow">FAQ</span>
+    <h2>Have a question? We have an answer</h2>
+  </div>
+  <div class="faq">
+    <div class="faq-item">
+      <button class="faq-q">Can I use the converter to make actual money transfers?<span class="chev">▼</span></button>
+      <div class="faq-a"><p>Yes. The converter shows a live quote — create a free account, confirm the amount, and complete your CAD to INR transfer in the same flow.</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q">How often is the CAD to INR rate updated?<span class="chev">▼</span></button>
+      <div class="faq-a"><p>Rates refresh in real time throughout market hours, so the number you see reflects the current mid-market rate at the moment you send.</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q">What fees will I pay to convert CAD to INR?<span class="chev">▼</span></button>
+      <div class="faq-a"><p>Transfers over $500 CAD are free. Smaller amounts carry a low flat fee, always displayed before you confirm — no hidden charges, ever.</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q">How quickly does the money reach an Indian bank account?<span class="chev">▼</span></button>
+      <div class="faq-a"><p>Most transfers to major Indian banks arrive within minutes. In rare cases, bank-side processing can take up to one business day.</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q">Is there a limit on how much CAD I can convert?<span class="chev">▼</span></button>
+      <div class="faq-a"><p>Verified accounts can send up to $50,000 CAD per transfer. Higher limits are available for business accounts on request.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA BAND ============ -->
+<section class="wrap">
+  <div class="cta-band">
+    <div>
+      <h2>Your first CAD to INR transfer is on us</h2>
+      <p>Join 60,000+ Canadians sending money home at real exchange rates. Free to sign up, free first transfer.</p>
+    </div>
+    <a class="btn btn-primary" href="#" onclick="go('signup');return false">Get started free →</a>
+  </div>
+</section>
+
+</div><!-- /page-home -->
+
+<!-- ============ SIGN UP PAGE ============ -->
+<div id="page-signup" class="page">
+  <div class="flow"><div class="wrap">
+    <div class="flow-card">
+      <button class="back-link" onclick="go('home')">← Back to home</button>
+      <h2>Create your free account</h2>
+      <p class="sub">Takes under two minutes. Your first transfer is on us.</p>
+      <form id="signupForm" novalidate>
+        <div class="f-field"><label for="suName">Full name</label><input id="suName" type="text" placeholder="Your full legal name"><p class="f-error">Please enter your full name.</p></div>
+        <div class="f-field"><label for="suEmail">Email</label><input id="suEmail" type="email" placeholder="you@example.com"><p class="f-error">Enter a valid email address.</p></div>
+        <div class="f-field"><label for="suPhone">Mobile number</label><input id="suPhone" type="tel" placeholder="+1 555 000 1234"><p class="f-error">Enter your mobile number.</p></div>
+        <div class="f-field"><label for="suPass">Password</label><input id="suPass" type="password" placeholder="At least 8 characters"><p class="f-error">Password must be at least 8 characters.</p></div>
+        <button class="btn btn-primary" type="submit">Create account →</button>
+      </form>
+      <p class="flow-foot">Already have an account? <button class="linklike" onclick="go('login')">Log in</button></p>
+    </div>
+  </div></div>
+</div>
+
+<!-- ============ LOGIN PAGE ============ -->
+<div id="page-login" class="page">
+  <div class="flow"><div class="wrap">
+    <div class="flow-card">
+      <button class="back-link" onclick="go('home')">← Back to home</button>
+      <h2>Welcome back</h2>
+      <p class="sub">Log in to send money at today’s live rate.</p>
+      <form id="loginForm" novalidate>
+        <div class="f-field"><label for="liEmail">Email</label><input id="liEmail" type="email" placeholder="you@example.com"><p class="f-error">Enter a valid email address.</p></div>
+        <div class="f-field"><label for="liPass">Password</label><input id="liPass" type="password" placeholder="Your password"><p class="f-error">Enter your password.</p></div>
+        <button class="btn btn-primary" type="submit">Log in →</button>
+      </form>
+      <p class="flow-foot">New to RemitBee? <button class="linklike" onclick="go('signup')">Create a free account</button></p>
+    </div>
+  </div></div>
+</div>
+
+<!-- ============ SEND MONEY WIZARD ============ -->
+<div id="page-send" class="page">
+  <div class="flow"><div class="wrap">
+    <div class="flow-card wide">
+      <button class="back-link" onclick="go('home')">← Back to home</button>
+      <div class="banner-ok" id="acctBanner">✅ Account ready — let’s send your first transfer.</div>
+      <div class="wizard-steps"><span id="ws1" class="on"></span><span id="ws2"></span><span id="ws3"></span></div>
+
+      <!-- Step 1: amount -->
+      <div class="wstep active" id="wstep1">
+        <h2>How much are you sending?</h2>
+        <p class="sub">Demo rate: 1 CAD = <span class="rate-inline">61.42</span> INR · Free over $500 CAD</p>
+        <div class="f-field"><label for="wSend">You send (CAD)</label><input id="wSend" inputmode="decimal" value="1,000"><p class="f-error">Enter an amount of at least 10 CAD.</p></div>
+        <div class="f-field"><label for="wRecv">They receive (INR)</label><input id="wRecv" readonly></div>
+        <div class="summary">
+          <div><span>Transfer fee</span><strong id="wFee">FREE</strong></div>
+          <div><span>Exchange rate</span><strong id="wRateLbl">1 CAD = 61.42 INR</strong></div>
+          <div class="total"><span>Total to pay</span><strong id="wTotal">—</strong></div>
+        </div>
+        <button class="btn btn-primary" onclick="wizNext(1)">Continue →</button>
+      </div>
+
+      <!-- Step 2: recipient -->
+      <div class="wstep" id="wstep2">
+        <h2>Who’s receiving it?</h2>
+        <p class="sub">Recipient’s Indian bank account details.</p>
+        <div class="f-field"><label for="rName">Recipient full name</label><input id="rName" placeholder="As per bank records"><p class="f-error">Enter the recipient’s name.</p></div>
+        <div class="f-field"><label for="rBank">Bank</label><select id="rBank"><option value="">Select a bank</option><option>HDFC Bank</option><option>ICICI Bank</option><option>State Bank of India</option><option>Axis Bank</option><option>Kotak Mahindra Bank</option><option>Punjab National Bank</option></select><p class="f-error">Choose a bank.</p></div>
+        <div class="f-field"><label for="rAcct">Account number</label><input id="rAcct" inputmode="numeric" placeholder="9–18 digits"><p class="f-error">Enter a valid account number (9–18 digits).</p></div>
+        <div class="f-field"><label for="rIfsc">IFSC code</label><input id="rIfsc" placeholder="e.g. HDFC0001234" style="text-transform:uppercase" maxlength="11"><p class="f-error">Enter the 11-character IFSC code.</p></div>
+        <button class="btn btn-primary" onclick="wizNext(2)">Review transfer →</button>
+        <p class="flow-foot"><button class="linklike" onclick="wizShow(1)">← Back to amount</button></p>
+      </div>
+
+      <!-- Step 3: review -->
+      <div class="wstep" id="wstep3">
+        <h2>Review &amp; confirm</h2>
+        <p class="sub">Double-check everything before sending.</p>
+        <div class="summary" id="reviewBox"></div>
+        <button class="btn btn-primary" onclick="confirmSend()">Confirm &amp; send money →</button>
+        <p class="flow-foot"><button class="linklike" onclick="wizShow(2)">← Edit details</button></p>
+      </div>
+    </div>
+  </div></div>
+</div>
+
+<!-- ============ SUCCESS PAGE ============ -->
+<div id="page-success" class="page">
+  <div class="flow"><div class="wrap">
+    <div class="flow-card center">
+      <div class="success-icon">🎉</div>
+      <h2>Transfer on its way!</h2>
+      <p class="sub" id="successMsg" style="margin-bottom:8px">Your money is on its way.</p>
+      <div><span class="ref" id="refNo">RB-00000000</span></div>
+      <p class="sub" style="margin-top:8px">Estimated delivery: within minutes · Demo confirmation only</p>
+      <button class="btn btn-primary" onclick="go('send')">Send another transfer</button>
+      <button class="btn btn-ghost" style="margin-top:10px" onclick="go('home')">Back to home</button>
+    </div>
+  </div></div>
+</div>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a class="logo" href="#"><span class="logo-mark"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><ellipse cx="6.4" cy="6.4" rx="4.8" ry="2.7" fill="#CFE9DD" transform="rotate(-28 6.4 6.4)"/><ellipse cx="17.6" cy="6.4" rx="4.8" ry="2.7" fill="#CFE9DD" transform="rotate(28 17.6 6.4)"/><clipPath id="beeBodyFoot"><ellipse cx="12" cy="14" rx="5.3" ry="7"/></clipPath><ellipse cx="12" cy="14" rx="5.3" ry="7" fill="#F2A93B"/><g clip-path="url(#beeBodyFoot)"><rect x="5" y="11.6" width="14" height="2.3" fill="#0E3B36"/><rect x="5" y="16.2" width="14" height="2.3" fill="#0E3B36"/></g><circle cx="12" cy="6.4" r="2.5" fill="#F2A93B"/><path d="M12 20.6 L10.7 23 L13.3 23 Z" fill="#F2A93B"/></svg></span>Remit<span style="color:var(--saffron)">Bee</span></a>
+        <p>Fast, transparent money transfers from Canada to 100+ countries worldwide.</p>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <ul><li><a href="#">About us</a></li><li><a href="#">Security</a></li><li><a href="#">Blog</a></li><li><a href="#">Careers</a></li></ul>
+      </div>
+      <div>
+        <h4>Converters</h4>
+        <ul><li><a href="#">CAD to INR</a></li><li><a href="#">CAD to PHP</a></li><li><a href="#">CAD to LKR</a></li><li><a href="#">CAD to USD</a></li></ul>
+      </div>
+      <div>
+        <h4>Send money</h4>
+        <ul><li><a href="#">To India</a></li><li><a href="#">To Sri Lanka</a></li><li><a href="#">To Philippines</a></li><li><a href="#">To Mexico</a></li></ul>
+      </div>
+      <div>
+        <h4>Support</h4>
+        <ul><li><a href="#">Help centre</a></li><li><a href="#">Our fees</a></li><li><a href="#">Contact us</a></li><li><a href="#">Privacy policy</a></li></ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 RemitBee. Demo landing page — all rates illustrative.</span>
+      <div class="socials">
+        <a href="#" aria-label="Facebook">f</a><a href="#" aria-label="X">𝕏</a><a href="#" aria-label="Instagram">◎</a><a href="#" aria-label="LinkedIn">in</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var RATE = 61.42; // demo CAD→INR rate
+
+  /* ---------- converter ---------- */
+  var send = document.getElementById('sendAmt');
+  var recv = document.getElementById('recvAmt');
+
+  function parseNum(s){ return parseFloat(String(s).replace(/,/g,'')) || 0; }
+  function fmt(n, dec){
+    return n.toLocaleString('en-IN',{minimumFractionDigits:dec===undefined?2:dec,maximumFractionDigits:dec===undefined?2:dec});
+  }
+  function fromSend(){
+    var v = parseNum(send.value);
+    recv.value = fmt(v * RATE, 0);
+    updateFee(v);
+  }
+  function fromRecv(){
+    var v = parseNum(recv.value);
+    send.value = fmt(v / RATE, 0);
+    updateFee(v / RATE);
+  }
+  function updateFee(cad){
+    var fee = document.getElementById('feeLine');
+    if(cad >= 500){ fee.textContent = 'FREE (over $500 CAD)'; fee.className = 'fee-free'; }
+    else { fee.textContent = '$2.99 CAD'; fee.className = ''; fee.style.color = 'var(--pine-deep)'; }
+  }
+  send.addEventListener('input', fromSend);
+  recv.addEventListener('input', fromRecv);
+  send.addEventListener('blur', function(){ send.value = fmt(parseNum(send.value),0); });
+  recv.addEventListener('blur', function(){ recv.value = fmt(parseNum(recv.value),0); });
+
+  document.getElementById('swapBtn').addEventListener('click', function(){
+    var a = send.value; send.value = recv.value; recv.value = a;
+    fromSend();
+  });
+
+  /* ---------- rate labels ---------- */
+  document.getElementById('rateLabel').textContent = RATE.toFixed(2);
+  document.getElementById('rateLine').textContent = '1 CAD = ' + RATE.toFixed(2) + ' INR';
+  document.getElementById('statNow').textContent = '₹' + RATE.toFixed(2);
+  Array.prototype.forEach.call(document.querySelectorAll('.rate-inline'), function(el){ el.textContent = RATE.toFixed(2); });
+  fromSend();
+
+  /* ---------- conversion tables ---------- */
+  var cadAmts = [1,5,10,50,100,250,500,1000,2000,5000,10000,25000,50000];
+  var inrAmts = [100,500,1000,5000,10000,25000,50000,100000,250000,500000,1000000];
+  var t1 = document.querySelector('#tblCadInr tbody');
+  var t2 = document.querySelector('#tblInrCad tbody');
+  cadAmts.forEach(function(a){
+    t1.insertAdjacentHTML('beforeend','<tr><td>'+fmt(a,0)+' CAD</td><td>₹ '+fmt(a*RATE)+'</td></tr>');
+  });
+  inrAmts.forEach(function(a){
+    t2.insertAdjacentHTML('beforeend','<tr><td>₹ '+fmt(a,0)+'</td><td>'+fmt(a/RATE)+' CAD</td></tr>');
+  });
+
+  /* ---------- 30-day chart ---------- */
+  var pts = [60.9,61.1,60.8,60.6,60.35,60.5,60.7,61.0,61.2,61.05,60.9,61.15,61.4,61.6,61.8,62.08,61.9,61.7,61.5,61.6,61.45,61.3,61.2,61.35,61.5,61.6,61.5,61.38,61.3,61.42];
+  var svg = document.getElementById('chart');
+  var W=640,H=220,padL=44,padR=14,padT=16,padB=28;
+  var min=Math.min.apply(null,pts)-0.15, max=Math.max.apply(null,pts)+0.15;
+  function X(i){ return padL + i*(W-padL-padR)/(pts.length-1); }
+  function Y(v){ return padT + (max-v)/(max-min)*(H-padT-padB); }
+  var d='', area='';
+  pts.forEach(function(v,i){ d += (i?'L':'M') + X(i).toFixed(1) + ' ' + Y(v).toFixed(1) + ' '; });
+  area = d + 'L' + X(pts.length-1).toFixed(1) + ' ' + (H-padB) + ' L' + padL + ' ' + (H-padB) + ' Z';
+  var grid='';
+  for(var g=0; g<4; g++){
+    var gv = min + (max-min)*g/3;
+    var gy = Y(gv);
+    grid += '<line x1="'+padL+'" y1="'+gy+'" x2="'+(W-padR)+'" y2="'+gy+'" stroke="rgba(255,255,255,.08)" stroke-width="1"/>';
+    grid += '<text x="'+(padL-8)+'" y="'+(gy+4)+'" text-anchor="end" font-size="10" fill="#7FA79C">'+gv.toFixed(1)+'</text>';
+  }
+  var last = pts.length-1;
+  svg.innerHTML =
+    '<defs><linearGradient id="fillG" x1="0" y1="0" x2="0" y2="1">'+
+    '<stop offset="0" stop-color="#F2A93B" stop-opacity=".35"/><stop offset="1" stop-color="#F2A93B" stop-opacity="0"/></linearGradient></defs>'+
+    grid+
+    '<path d="'+area+'" fill="url(#fillG)"/>'+
+    '<path d="'+d+'" fill="none" stroke="#F2A93B" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>'+
+    '<circle cx="'+X(last)+'" cy="'+Y(pts[last])+'" r="5" fill="#F2A93B" stroke="#092A26" stroke-width="2.5"/>'+
+    '<text x="'+(X(last)-8)+'" y="'+(Y(pts[last])-12)+'" text-anchor="end" font-size="12" font-weight="700" fill="#fff">₹'+pts[last].toFixed(2)+'</text>';
+
+  /* ---------- FAQ accordion ---------- */
+  Array.prototype.forEach.call(document.querySelectorAll('.faq-q'), function(btn){
+    btn.addEventListener('click', function(){
+      var item = btn.parentElement;
+      var ans = item.querySelector('.faq-a');
+      var open = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(function(o){
+        o.classList.remove('open'); o.querySelector('.faq-a').style.maxHeight = null;
+      });
+      if(!open){ item.classList.add('open'); ans.style.maxHeight = ans.scrollHeight + 'px'; }
+    });
+  });
+  /* ---------- page router ---------- */
+  window.go = function(id){
+    document.querySelectorAll('.page').forEach(function(p){ p.classList.remove('active'); });
+    var pg = document.getElementById('page-'+id);
+    if(pg) pg.classList.add('active');
+    window.scrollTo({top:0});
+    if(id==='send') syncSend();
+  };
+
+  /* nav links + logo return to home before scrolling to sections */
+  document.querySelectorAll('.nav-links a').forEach(function(a){
+    a.addEventListener('click', function(e){
+      e.preventDefault();
+      go('home');
+      var t = document.querySelector(a.getAttribute('href'));
+      setTimeout(function(){ if(t) t.scrollIntoView({behavior:'smooth'}); }, 60);
+    });
+  });
+  document.querySelectorAll('.nav .logo, footer .logo').forEach(function(l){
+    l.addEventListener('click', function(e){ e.preventDefault(); go('home'); });
+  });
+
+  /* ---------- form helpers ---------- */
+  function mark(id, bad){
+    var f = document.getElementById(id).closest('.f-field');
+    f.classList.toggle('invalid', !!bad);
+    return !bad;
+  }
+  function val(id){ return document.getElementById(id).value.trim(); }
+
+  /* ---------- sign up ---------- */
+  document.getElementById('signupForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    var ok = true;
+    ok = mark('suName',  val('suName').length < 2) && ok;
+    ok = mark('suEmail', !/^\S+@\S+\.\S+$/.test(val('suEmail'))) && ok;
+    ok = mark('suPhone', val('suPhone').replace(/\D/g,'').length < 7) && ok;
+    ok = mark('suPass',  document.getElementById('suPass').value.length < 8) && ok;
+    if(!ok) return;
+    document.getElementById('acctBanner').style.display = 'block';
+    go('send');
+  });
+
+  /* ---------- log in ---------- */
+  document.getElementById('loginForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    var ok = true;
+    ok = mark('liEmail', !/^\S+@\S+\.\S+$/.test(val('liEmail'))) && ok;
+    ok = mark('liPass',  document.getElementById('liPass').value.length < 1) && ok;
+    if(!ok) return;
+    document.getElementById('acctBanner').style.display = 'none';
+    go('send');
+  });
+
+  /* ---------- send money wizard ---------- */
+  var wSend = document.getElementById('wSend');
+  var wRecv = document.getElementById('wRecv');
+
+  function wizCalc(){
+    var cad = parseNum(wSend.value);
+    var fee = cad >= 500 ? 0 : 2.99;
+    wRecv.value = '₹ ' + fmt(cad * RATE, 0);
+    var feeEl = document.getElementById('wFee');
+    feeEl.textContent = fee ? '$' + fee.toFixed(2) + ' CAD' : 'FREE';
+    feeEl.style.color = fee ? 'var(--pine-deep)' : '#16A34A';
+    document.getElementById('wRateLbl').textContent = '1 CAD = ' + RATE.toFixed(2) + ' INR';
+    document.getElementById('wTotal').textContent = '$' + fmt(cad + fee) + ' CAD';
+    return {cad:cad, fee:fee, inr:cad*RATE};
+  }
+  wSend.addEventListener('input', wizCalc);
+  wSend.addEventListener('blur', function(){ wSend.value = fmt(parseNum(wSend.value),0); wizCalc(); });
+
+  function syncSend(){
+    wSend.value = send.value;   /* carry amount over from the hero converter */
+    wizCalc();
+    wizShow(1);
+  }
+
+  window.wizShow = function(n){
+    [1,2,3].forEach(function(i){
+      document.getElementById('wstep'+i).classList.toggle('active', i===n);
+      document.getElementById('ws'+i).classList.toggle('on', i<=n);
+    });
+  };
+
+  window.wizNext = function(from){
+    if(from === 1){
+      var q = wizCalc();
+      if(!mark('wSend', !(q.cad >= 10))) return;
+      wizShow(2);
+    }
+    if(from === 2){
+      var ok = true;
+      ok = mark('rName', val('rName').length < 2) && ok;
+      ok = mark('rBank', !val('rBank')) && ok;
+      ok = mark('rAcct', !/^\d{9,18}$/.test(val('rAcct').replace(/\s/g,''))) && ok;
+      ok = mark('rIfsc', val('rIfsc').length !== 11) && ok;
+      if(!ok) return;
+      var q2 = wizCalc();
+      document.getElementById('reviewBox').innerHTML =
+        '<div><span>You send</span><strong>$' + fmt(q2.cad) + ' CAD</strong></div>' +
+        '<div><span>They receive</span><strong>₹ ' + fmt(q2.inr) + '</strong></div>' +
+        '<div><span>Exchange rate</span><strong>1 CAD = ' + RATE.toFixed(2) + ' INR</strong></div>' +
+        '<div><span>Recipient</span><strong>' + val('rName') + '</strong></div>' +
+        '<div><span>Bank</span><strong>' + val('rBank') + '</strong></div>' +
+        '<div><span>Account</span><strong>••••' + val('rAcct').slice(-4) + '</strong></div>' +
+        '<div><span>Transfer fee</span><strong>' + (q2.fee ? '$' + q2.fee.toFixed(2) + ' CAD' : 'FREE') + '</strong></div>' +
+        '<div class="total"><span>Total to pay</span><strong>$' + fmt(q2.cad + q2.fee) + ' CAD</strong></div>';
+      wizShow(3);
+    }
+  };
+
+  window.confirmSend = function(){
+    var q = wizCalc();
+    document.getElementById('refNo').textContent =
+      'RB-' + Math.floor(10000000 + Math.random()*89999999);
+    document.getElementById('successMsg').textContent =
+      '₹ ' + fmt(q.inr) + ' is on its way to ' + val('rName') + ' (' + val('rBank') + ').';
+    go('success');
+  };
+
+  wizCalc();
+})();
+</script>
+</body>
+</html>
